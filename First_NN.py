@@ -21,12 +21,24 @@ class_names=['T-shirt/top','Trouser','Pullover','Dress','Coat','Sandal','Shirt',
 
 train_images=train_images/255.0
 test_images=test_images/255.0
-PLT.figure(figsize=(10,10))
-for image_loop in range(30):
-    PLT.subplot(5,6,image_loop+1)
-    PLT.xticks([])
-    PLT.yticks([])
-    PLT.grid(False)
-    PLT.imshow(train_images[image_loop],cmap=PLT.cm.binary)
-    PLT.xlabel(class_names[train_labels[image_loop]])
-PLT.show()
+# PLT.figure(figsize=(10,10))
+# for image_loop in range(30):
+#     PLT.subplot(5,6,image_loop+1)
+#     PLT.xticks([])
+#     PLT.yticks([])
+#     PLT.grid(False)
+#     PLT.imshow(train_images[image_loop],cmap=PLT.cm.binary)
+#     PLT.xlabel(class_names[train_labels[image_loop]])
+# PLT.show()
+
+#Building the model
+model=TF.keras.Sequential([
+    TF.keras.layers.Flatten(input_shape=(28,28)),
+    TF.keras.layers.Dense(128, activation='relu'),
+    TF.keras.layers.Dense(10)])
+
+model.compile(optimizer='adam',
+                loss=TF.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+                metrics=['accuracy'])
+
+model.fit(train_images,train_labels,epochs=10)
