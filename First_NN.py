@@ -10,5 +10,11 @@ class_names=['T-shirt/top','Trouser','Pullover','Dress','Coat','Sandal','Shirt',
 # print(len(train_labels))
 # print(train_labels)
 
-print(test_images.shape)
-print(len(test_labels))
+# print(test_images.shape)
+# print(len(test_labels))
+
+PLT.figure()
+PLT.imshow(train_images[1])# Changing the index changes the image being viewed 
+PLT.colorbar()
+PLT.grid(False)
+PLT.show()
