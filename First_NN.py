@@ -36,9 +36,16 @@ model=TF.keras.Sequential([
     TF.keras.layers.Flatten(input_shape=(28,28)),
     TF.keras.layers.Dense(128, activation='relu'),
     TF.keras.layers.Dense(10)])
-
+#Run the below line if the code is being executed for the first time
 model.compile(optimizer='adam',
-                loss=TF.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
-                metrics=['accuracy'])
+                 loss=TF.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+                 metrics=['accuracy'])
 
 model.fit(train_images,train_labels,epochs=10)
+
+test_loss,test_acc=model.evaluate(test_images,test_labels,verbose=2)
+#print("\nTest Accuracy =",test_acc)
+
+probability_model=TF.keras.Sequential([model,TF.keras.layers.Softmax()])
+predictions=probability_model.predict(test_images)
+#print(predictions[0])
