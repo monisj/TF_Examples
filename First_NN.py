@@ -53,10 +53,22 @@ predictions=probability_model.predict(test_images)
 #print(np.argmax(predictions[0]))
 #print(test_labels[0])
 
-loop=12
-PLT.figure(figsize=(6,3))
-PLT.subplot(1,2,1)
-PL.plot_image(loop,predictions[loop],test_labels,test_images)
-PLT.subplot(1,2,2)
-PL.plot_value_array(loop,predictions[loop],test_labels)
+# loop=12
+# PLT.figure(figsize=(6,3))
+# PLT.subplot(1,2,1)
+# PL.plot_image(loop,predictions[loop],test_labels,test_images)
+# PLT.subplot(1,2,2)
+# PL.plot_value_array(loop,predictions[loop],test_labels)
+# PLT.show()
+
+no_rows=5
+no_col=3
+no_images=no_rows*no_col
+PLT.figure(figsize=(2*2*no_col,2*no_rows))
+for loop in range(no_images):
+    PLT.subplot(no_rows,2*no_col,2*loop+1)
+    PL.plot_image(loop,predictions[loop],test_labels,test_images)
+    PLT.subplot(no_rows,2*no_col,2*loop+2)
+    PL.plot_value_array(loop,predictions[loop],test_labels)
+PLT.tight_layout()
 PLT.show()
