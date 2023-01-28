@@ -1,6 +1,7 @@
 import tensorflow as TF
 import numpy as np
 import matplotlib.pyplot as PLT
+import Plot as PL
 # print(TF.__version__)
 fashion_m=TF.keras.datasets.fashion_mnist
 (train_images,train_labels),(test_images,test_labels)=fashion_m.load_data()
@@ -49,3 +50,13 @@ test_loss,test_acc=model.evaluate(test_images,test_labels,verbose=2)
 probability_model=TF.keras.Sequential([model,TF.keras.layers.Softmax()])
 predictions=probability_model.predict(test_images)
 #print(predictions[0])
+#print(np.argmax(predictions[0]))
+#print(test_labels[0])
+
+# loop=0
+# PLT.figure(figsize=(6,3))
+# PLT.subplot(1,2,1)
+# PL.plot_image(loop,predictions[loop],test_labels,test_images)
+# PLT.subplot(1,2,2)
+# PL.plot_value_array(loop,predictions[loop],test_labels)
+# PLT.show()
