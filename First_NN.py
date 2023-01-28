@@ -61,14 +61,29 @@ predictions=probability_model.predict(test_images)
 # PL.plot_value_array(loop,predictions[loop],test_labels)
 # PLT.show()
 
-no_rows=5
-no_col=3
-no_images=no_rows*no_col
-PLT.figure(figsize=(2*2*no_col,2*no_rows))
-for loop in range(no_images):
-    PLT.subplot(no_rows,2*no_col,2*loop+1)
-    PL.plot_image(loop,predictions[loop],test_labels,test_images)
-    PLT.subplot(no_rows,2*no_col,2*loop+2)
-    PL.plot_value_array(loop,predictions[loop],test_labels)
-PLT.tight_layout()
-PLT.show()
+# no_rows=5
+# no_col=3
+# no_images=no_rows*no_col
+# PLT.figure(figsize=(2*2*no_col,2*no_rows))
+# for loop in range(no_images):
+#     PLT.subplot(no_rows,2*no_col,2*loop+1)
+#     PL.plot_image(loop,predictions[loop],test_labels,test_images)
+#     PLT.subplot(no_rows,2*no_col,2*loop+2)
+#     PL.plot_value_array(loop,predictions[loop],test_labels)
+# PLT.tight_layout()
+# PLT.show()
+
+img=test_images[2]
+print(img.shape)
+
+img=(np.expand_dims(img,0))
+print(img.shape)
+
+predictions_single=probability_model.predict(img)
+print(predictions_single)
+
+PL.plot_value_array(1,predictions_single[0],test_labels)
+_=PLT.xticks(range(10),class_names,rotation=45)
+#PLT.show()
+
+print(np.argmax(predictions_single[0]))
